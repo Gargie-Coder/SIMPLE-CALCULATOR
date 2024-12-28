@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="stylescal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="calculator">
+        <div class="display"> 
+            <div id="wel"><p>Welcome to Calculator</p></div>
+            <div id="result">0</div>       
+        </div>
+        <div class="button">
+            <div id="btnrow-1">
+                <button onclick="clearDisplay()">AC</button>
+                <button onclick="backspace()">&LeftArrow;</button>
+                <button onclick="appendToDisplay('%')">%</button>
+                <button onclick="appendToDisplay('/')">&divide;</button>
+            </div>
+            <div id="btnrow-2">
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button onclick="appendToDisplay('*')">&times;</button>
+            </div>
+            <div id="btnrow-3">
+                <button onclick="appendToDisplay('4')">4</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('-')">&minus;</button>
+            </div>
+            <div id="btnrow-4">
+                <button onclick="appendToDisplay('1')">1</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button onclick="appendToDisplay('+')">&plus;</button>
+            </div>
+            <div id="btnrow-5">
+                <button onclick="appendToDisplay('0')">0</button>
+                <button onclick="appendToDisplay('00')">00</button>
+                <button onclick="appendToDisplay('.')">.</button>
+                <button onclick="calculateResult()">&equals;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById("result");
+
+       
+        function clearDisplay() {
+            display.textContent = "0";
+        }
+
+        
+        function appendToDisplay(value) {
+            if (display.textContent === "0") {
+                display.textContent = value;
+            } else {
+                display.textContent += value;
+            }
+        }
+
+     
+        function backspace() {
+            display.textContent = display.textContent.slice(0, -1) || "0";
+        }
+
+       
+        function calculateResult() {
+            try {
+          
+                display.textContent = eval(display.textContent.replace('%', '/100'));
+            } catch (error) {
+                display.textContent = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
